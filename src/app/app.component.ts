@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'task';
+  fileContent: any = '';
+
+   onChange(fileList: FileList ): void {
+    let file = fileList[0];
+    let fileReader: FileReader = new FileReader();
+    let self = this;
+    fileReader.onloadend = function(x) {
+      self.fileContent = fileReader.result;
+    }
+    fileReader.readAsText(file);
+  }
 }
